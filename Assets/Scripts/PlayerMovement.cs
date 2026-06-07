@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityStandardAssets.Characters.FirstPerson;
 public class PlayerMovement : MonoBehaviour
 {
-    UIManager UIManager;
+    FirstPersonController fpsController;
+    UIManager uiManager;
     public GameObject[] pickables;
     public GameObject player;
     // Start is called before the first frame update
@@ -12,13 +13,22 @@ public class PlayerMovement : MonoBehaviour
     {
         pickables = GameObject.FindGameObjectsWithTag("Pickable");
         player = GameObject.FindGameObjectWithTag("Player");
-         UIManager = FindObjectOfType<UIManager>();
+        fpsController = player.GetComponent<FirstPersonController>();
+         uiManager = FindObjectOfType<UIManager>();
+        fpsController.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (uiManager.JuegoEmpezado && !fpsController.enabled)
+        {
+            fpsController.enabled = true;
+        }
+        if(!uiManager.JuegoEmpezado && fpsController.enabled)
+        {
+            fpsController.enabled = false;
+        }
     }
      void OnTriggerEnter(Collider chocado)
     {
@@ -28,9 +38,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 Destroy(chocado.gameObject);
                 Debug.Log("El objeto ha sido agarrado");
-                UIManager.Puntaje += 1;
-                UIManager.UpdateScore();
-                Debug.Log(UIManager.Puntaje);
+                uiManager.Puntaje += 1;
+                uiManager.UpdateScore();
+                Debug.Log(uiManager.Puntaje);
             }
     }    
 }
