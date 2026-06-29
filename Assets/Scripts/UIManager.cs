@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public GameObject Panel_Empezar;
     public GameObject Panel_Juego;
     public GameObject Panel_Perder;
+    public GameObject Panel_Victoria;
     public TextMeshProUGUI Temporizador;
     public int Puntaje;
     
@@ -21,6 +22,7 @@ public class UIManager : MonoBehaviour
     {
         
         Panel_Empezar.SetActive(true);
+        Panel_Victoria.SetActive(false);
         Panel_Juego.SetActive(false);
         Panel_Perder.SetActive(false);
         Puntaje = 0;
@@ -76,6 +78,7 @@ public class UIManager : MonoBehaviour
     }
     public void GanarJuego(){
         Panel_Juego.SetActive(false);
+        Panel_Victoria.SetActive(true);
         JuegoEmpezado = false;
     }
     public void ReiniciarJuego(){
