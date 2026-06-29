@@ -1,0 +1,4 @@
+sceneSetups:
+- path: C:/Users/49928492/Documents/GitHub/TrabajoBimestral/Assets/Scenes/Talleres.unity
+  isLoaded: 1
+  isActive: 1
